@@ -94,10 +94,21 @@
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UW-aF-61D">
+                                <rect key="frame" x="147.5" y="602" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="FNv-nM-gYF"/>
+                                </constraints>
+                                <state key="normal" title="坐标获取"/>
+                                <connections>
+                                    <action selector="getLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNW-gR-59c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zGj-kR-MB6" firstAttribute="centerY" secondItem="GG3-xs-blP" secondAttribute="centerY" id="2ez-DG-C1F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9UW-aF-61D" secondAttribute="bottom" constant="35" id="5qG-Hs-oIc"/>
                             <constraint firstItem="zGj-kR-MB6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="9YZ-gl-xpl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="udv-uz-Rsi" secondAttribute="trailing" constant="16" id="A3O-Cl-i1q"/>
                             <constraint firstItem="li7-rY-1WF" firstAttribute="top" secondItem="zGj-kR-MB6" secondAttribute="bottom" constant="40" id="BJl-UU-cbJ"/>
@@ -106,6 +117,7 @@
                             <constraint firstItem="GG3-xs-blP" firstAttribute="top" secondItem="zGj-kR-MB6" secondAttribute="top" id="Fmt-zb-Vt3"/>
                             <constraint firstItem="pPJ-AL-A6G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Fo1-gu-V9g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pPJ-AL-A6G" secondAttribute="trailing" constant="16" id="HoI-cO-h2r"/>
+                            <constraint firstItem="9UW-aF-61D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LNx-Ee-TQ9"/>
                             <constraint firstItem="GG3-xs-blP" firstAttribute="height" secondItem="zGj-kR-MB6" secondAttribute="height" id="Q2f-5B-eEb"/>
                             <constraint firstItem="pPJ-AL-A6G" firstAttribute="top" secondItem="udv-uz-Rsi" secondAttribute="bottom" constant="20.5" id="QbY-uX-y9H"/>
                             <constraint firstItem="udv-uz-Rsi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="Qxg-Pa-6HV"/>

@@ -40,6 +40,31 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func getLocation(_ sender: UIButton) {
+        
+        locationManager.coordinateBlock = { location in
+            
+            self.showString += "latitude: \(location.latitude), longitude: \(location.longitude)"
+            self.showString += "\n=========================\n"
+            self.textView.text = self.showString
+        }
+        
+        locationManager.startLocation()
+    }
+    
+    let locationManager = RNLocationManager()
+    lazy var cordinations: [LocationModel] = { // 坐标管理
+        let param = [("31.24179053588886", "121.60099938523173"), ("31.2423446635075", "121.601311694944"),("31.2421205421344", "121.601074708977"),("31.2420892233947", "121.601053864909"),("31.2423787778534", "121.601203233117")]
+        var array = [LocationModel]()
+        for item in param {
+            var model = LocationModel()
+            model.latitude = item.0 as String
+            model.longitude = item.1 as String
+            array.append(model)
+        }
+        
+        return array
+    }()
     // 登陆参数 -  当前默认 : zwx --->  不同的人 "loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4" 两个字段不同
     var loginParam: [String: Any] = ["loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4", "udid": "A7D5EDBE-5529-1803-4DCC-45360B5F0688-1507863771-394855", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1114a8979291e13fadf", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
     var showString: String = ""
@@ -55,6 +80,9 @@ class ViewController: UIViewController {
     lazy var signoutParams: [String: Any] = {
         return [String: Any]()
     }()
+    
+    
+    var selectIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +112,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let selectionViewController = segue.destination as! SelectionController
+        let _ = segue.destination as! SelectionController
         
         if segue.identifier == "Selection" {
             
@@ -155,6 +183,9 @@ extension ViewController {
         }) { (msg, code) in
             RNHud().hiddenHub()
             RNNoticeAlert.showError("提示", body: msg)
+            // 当坐标位置不对时用这个坐标 ---- 坐标数组里的坐标不是每个都测试了
+            let model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
+            self.cordinations = [model]
         }
     }
     
@@ -177,22 +208,38 @@ extension ViewController {
         }) { (msg, code) in
             RNHud().hiddenHub()
             RNNoticeAlert.showError("提示", body: msg)
+            
+            // 当坐标位置不对时用这个坐标 ---- 坐标数组里的坐标不是每个都测试了
+            let model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
+            self.cordinations = [model]
+        
         }
     }
     
     func mergeParams(tag: Int) {
-    
-        guard let token = loginModel.token else {
-            RNNoticeAlert.showError("提示", body: "token为空")
-            return
-        }
         guard let schedule = showModel.schedules?.last else {
             RNNoticeAlert.showError("提示", body: "schedule为空")
             return
         }
         
         let sp: [String: String] = ["attCoSol": schedule.attCoSol ?? "", "enableOffEndTime": schedule.enableOffEndTime ?? "", "enableOffStartTime": schedule.enableOffStartTime ?? "", "enableOnEndTime": schedule.enableOnEndTime ?? "", "enableOnStartTime": schedule.enableOnStartTime ?? "", "scheduleId": schedule.scheduleId ?? "", "scheduleName": schedule.scheduleName ?? "", "workOnTime": schedule.workOnTime ?? ""]
-        let lp: [String: String] = ["latitude": "31.24179053588886", "longitude": "121.60099938523173", "success": "1"]
+        
+        // 随机坐标
+        let count: UInt32 = UInt32(cordinations.count)
+        let index = Int(arc4random()%count) // 0-count之间的随机数, 不包括 count
+        var model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
+        if index < cordinations.count {
+            model = cordinations[index]
+        }
+        // 测试代码
+//        var model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
+//        if selectIndex < cordinations.count {
+//            model = cordinations[selectIndex]
+//        }
+//        print("selectIndex: \(selectIndex)")
+//        selectIndex += 1
+        
+        let lp: [String: String] = ["latitude": model.latitude, "longitude": model.longitude, "success": "1"]
         
         var fp: [String: String] = ["onOrOff": "off", "attCoSol": "gps"]
         switch tag {

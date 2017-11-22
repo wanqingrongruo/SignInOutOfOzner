@@ -25,6 +25,8 @@
 		E06543FE1FC3EFCC0050B283 /* RNListeningNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06543FD1FC3EFCB0050B283 /* RNListeningNetwork.swift */; };
 		E06544001FC3EFD00050B283 /* RNNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06543FF1FC3EFCF0050B283 /* RNNetworkManager.swift */; };
 		E0A6786D1FC526E500578E9E /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A6786C1FC526E500578E9E /* SelectionController.swift */; };
+		E0A6786F1FC54E2C00578E9E /* RNLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A6786E1FC54E2C00578E9E /* RNLocationManager.swift */; };
+		E0A678711FC553AF00578E9E /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A678701FC553AF00578E9E /* LocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		E06543FD1FC3EFCB0050B283 /* RNListeningNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNListeningNetwork.swift; sourceTree = "<group>"; };
 		E06543FF1FC3EFCF0050B283 /* RNNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNNetworkManager.swift; sourceTree = "<group>"; };
 		E0A6786C1FC526E500578E9E /* SelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
+		E0A6786E1FC54E2C00578E9E /* RNLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNLocationManager.swift; sourceTree = "<group>"; };
+		E0A678701FC553AF00578E9E /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				E02ED4841FC4057000F7F7C8 /* ShowModel.swift */,
 				E02ED4861FC4058000F7F7C8 /* schedulesModel.swift */,
 				E02ED4881FC40BD900F7F7C8 /* TimeModel.swift */,
+				E0A678701FC553AF00578E9E /* LocationModel.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				E02ED47B1FC3F3AE00F7F7C8 /* RNHud.swift */,
 				E02ED47D1FC3F3B800F7F7C8 /* RNNoticeAlert.swift */,
 				E02ED47F1FC3F4E000F7F7C8 /* RNConstDefine.swift */,
+				E0A6786E1FC54E2C00578E9E /* RNLocationManager.swift */,
 			);
 			name = tools;
 			sourceTree = "<group>";
@@ -307,10 +313,12 @@
 				E02ED4891FC40BD900F7F7C8 /* TimeModel.swift in Sources */,
 				E06543FC1FC3EFBF0050B283 /* BaseAPI.swift in Sources */,
 				E02ED4831FC3F7B400F7F7C8 /* LoginModel.swift in Sources */,
+				E0A678711FC553AF00578E9E /* LocationModel.swift in Sources */,
 				E0A6786D1FC526E500578E9E /* SelectionController.swift in Sources */,
 				E02ED4851FC4057000F7F7C8 /* ShowModel.swift in Sources */,
 				E06543FA1FC3EF4F0050B283 /* UserServicer.swift in Sources */,
 				E02ED47C1FC3F3AE00F7F7C8 /* RNHud.swift in Sources */,
+				E0A6786F1FC54E2C00578E9E /* RNLocationManager.swift in Sources */,
 				E06544001FC3EFD00050B283 /* RNNetworkManager.swift in Sources */,
 				E06543E31FC3CFA10050B283 /* AppDelegate.swift in Sources */,
 			);
