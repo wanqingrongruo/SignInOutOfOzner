@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (4.5.1)
+  - KRActivityIndicatorView (2.1.1)
+  - KRProgressHUD (3.1.2):
+    - KRActivityIndicatorView (= 2.1.1)
+  - PKHUD (5.0.0)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - SwiftMessages (4.1.0)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - KRProgressHUD
+  - PKHUD
+  - RxCocoa
+  - RxSwift
+  - SwiftMessages
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  KRActivityIndicatorView: fa5df9f4cf039651ad8b0f9c11c3159d1e19299f
+  KRProgressHUD: 6e23870531f8e854c8cba430b0f5a61074865250
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: cdad90a84136993760a57b3b29b72ddd8b64798e
+
+COCOAPODS: 1.3.1

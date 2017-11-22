@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '10.0'
+ inhibit_all_warnings! # 屏蔽所有来自库的警告
+
+target 'SignInOutOfOzner' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'Alamofire' # 网络
+  pod 'SwiftyJSON'# JSON 解析
+  pod 'PKHUD' # hud
+  pod 'KRProgressHUD'  # hudr
+  pod 'SwiftMessages' # alert
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+
+  # Pods for SignInOutOfOzner
+
+end
