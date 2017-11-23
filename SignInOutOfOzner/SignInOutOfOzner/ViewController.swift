@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         return array
     }()
     // 登陆参数 -  当前默认 : zwx --->  不同的人 "loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4" 两个字段不同
-    var loginParam: [String: Any] = ["loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4", "udid": "A7D5EDBE-5529-1803-4DCC-45360B5F0688-1507863771-394855", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1114a8979291e13fadf", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
+    var loginParam: [String: Any] = ["loginUserName": "6YOt5L2z", "password": "MTIzNDU2amlh", "udid": "68E0473B-A229-362A-0266-225DB17B6D0B-1510924439-057795", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1517bfd3f7f93fe69cd", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
     var showString: String = ""
     lazy var loginModel: LoginModel = {
         return LoginModel()
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.title = "zwx"
+        self.title = "gj"
     }
 
     override func didReceiveMemoryWarning() {
