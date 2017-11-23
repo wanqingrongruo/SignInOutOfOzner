@@ -179,7 +179,7 @@ extension ViewController {
                 self.showString += "date: \(result.date!)\ntime: \(result.time!)"
                 self.textView.text = self.showString
             }
-            self.shouMsg(leftString: "Work", rightString: "Sleep", contentString: "Work or sleep? That's a question - \(result.date ?? "") \(result.time ?? "")")
+            self.shouMsg(leftString: "Work", rightString: "Sleep", contentString: "Work or sleep? That's a question.- \(result.date ?? "") \(result.time ?? "")")
         }) { (msg, code) in
             RNHud().hiddenHub()
             RNNoticeAlert.showError("提示", body: msg)
