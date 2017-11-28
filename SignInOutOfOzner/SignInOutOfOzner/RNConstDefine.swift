@@ -23,8 +23,8 @@ let NAVIBAR_HEIGHT: CGFloat = 64.0
 
 // 关于颜色
 
-let MAIN_THEME_COLOR = UIColor(displayP3Red: 78/255.0, green: 172/255.0, blue: 220/255.0, alpha: 1.0) // 主色
-let BACKGROUND_COLOR = UIColor(displayP3Red: 73/255.0, green: 160/255.0, blue: 213/255.0, alpha: 1.0) //
-let BUTTONCOLOR =  UIColor(displayP3Red: 0/255.0, green: 172/255.0, blue: 235/255.0, alpha: 1.0) // 按钮背景
-let BASEBACKGROUNDCOLOR = UIColor(displayP3Red: 239/255.0, green: 239/255.0, blue: 239/255.0, alpha: 1.0) // 基础背景
+//@available(iOS 10.0, *)
+//let MAIN_THEME_COLOR = UIColor(displayP3Red: 78/255.0, green: 172/255.0, blue: 220/255.0, alpha: 1.0) // 主色
+
+let MAIN_THEME_COLOR = UIColor(hue: 78/255.0, saturation: 172/255.0, brightness: 220/255.0, alpha: 1.0)
 
