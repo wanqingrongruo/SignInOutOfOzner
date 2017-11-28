@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var showBtn: UIButton!
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             break
         case 400:
             // 签退
-             self.clickIndex = 400
+            self.clickIndex = 400
             self.showInfo()
             break
         default:
@@ -58,9 +58,9 @@ class ViewController: UIViewController {
         
         return array
     }()
-   
+    
     var showString: String = ""
-   
+    
     lazy var showModel: ShowModel = {
         return ShowModel()
     }()
@@ -85,16 +85,16 @@ class ViewController: UIViewController {
         if let name = UserDefaults.standard.object(forKey: UserName) as? String {
             self.title = name
         }else{
-           self.title = "who are you?"
+            self.title = "who are you?"
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // 字典转 jsonString
     func dicToJsonString(_ dic: [String: Any]) -> String?{
         let data = try? JSONSerialization.data(withJSONObject: dic, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -118,16 +118,16 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     
                     if let name = UserDefaults.standard.object(forKey: UserName) as? String {
-                         self.title = name
+                        self.title = name
                     }else{
-                         self.title = "***"
+                        self.title = "***"
                     }
-                   
+                    
                 }
             }
         }
     }
-
+    
 }
 
 extension ViewController {
@@ -144,10 +144,16 @@ extension ViewController {
             self.showModel = result
             DispatchQueue.main.async {
                 self.showString += "\n=================================\n"
-                self.showString += "date: \(result.currentDate!)\ntime: \(result.currentTime!)\nworkingTimeDesc: \(result.workingTimeDesc!)\nworkOnTime: \(result.schedules!.last!.workOnTime!)\nscheduleId: \(result.schedules!.last!.scheduleId!)\nscheduleName: \(result.schedules!.last!.scheduleName!)"
+                
+                if self.clickIndex == 300 {
+                    self.showString += "date: \(result.currentDate!)\ntime: \(result.currentTime!)\nworkingTimeDesc: \(result.workingTimeDesc!)\nworkOnTime: \(result.schedules!.first!.workOnTime!)\nscheduleId: \(result.schedules!.first!.scheduleId!)\nscheduleName: \(result.schedules!.first!.scheduleName!)"
+                }else if self.clickIndex == 400 {
+                    self.showString += "date: \(result.currentDate!)\ntime: \(result.currentTime!)\nworkingTimeDesc: \(result.workingTimeDesc!)\nworkOnTime: \(result.schedules!.last!.workOnTime!)\nscheduleId: \(result.schedules!.last!.scheduleId!)\nscheduleName: \(result.schedules!.last!.scheduleName!)"
+                }
+                
                 self.textView.text = self.showString
             }
-             RNNoticeAlert.showSuccess("提示", body: "获取信息成功", duration: 0.2)
+            RNNoticeAlert.showSuccess("提示", body: "获取信息成功", duration: 0.2)
             
             switch self.clickIndex {
             case 300:
@@ -167,7 +173,7 @@ extension ViewController {
     func signIn() {
         guard let token = UserDefaults.standard.object(forKey: UserToken) as? String else {
             RNNoticeAlert.showError("提示", body: "token为空, 请先登陆")
-             RNHud().hiddenHub()
+            RNHud().hiddenHub()
             return
         }
         mergeParams(tag: 0)
@@ -212,15 +218,29 @@ extension ViewController {
             // 当坐标位置不对时用这个坐标 ---- 坐标数组里的坐标不是每个都测试了
             let model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
             self.cordinations = [model]
-        
+            
         }
     }
     
     func mergeParams(tag: Int) {
-        guard let schedule = showModel.schedules?.last else {
-            RNNoticeAlert.showError("提示", body: "schedule为空")
-            return
+        
+        if clickIndex == 300 {
+            guard let schedule = showModel.schedules?.first else {
+                RNNoticeAlert.showError("提示", body: "schedule为空")
+                return
+            }
+            
+            mergeSchedule(schedule: schedule, and: tag)
+        }else if clickIndex == 400 {
+            guard let schedule = showModel.schedules?.last else {
+                RNNoticeAlert.showError("提示", body: "schedule为空")
+                return
+            }
+            mergeSchedule(schedule: schedule, and: tag)
         }
+    }
+    
+    func mergeSchedule(schedule: schedulesModel, and tag: Int) {
         
         let sp: [String: String] = ["attCoSol": schedule.attCoSol ?? "", "enableOffEndTime": schedule.enableOffEndTime ?? "", "enableOffStartTime": schedule.enableOffStartTime ?? "", "enableOnEndTime": schedule.enableOnEndTime ?? "", "enableOnStartTime": schedule.enableOnStartTime ?? "", "scheduleId": schedule.scheduleId ?? "", "scheduleName": schedule.scheduleName ?? "", "workOnTime": schedule.workOnTime ?? ""]
         
@@ -232,12 +252,12 @@ extension ViewController {
             model = cordinations[index]
         }
         // 测试代码
-//        var model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
-//        if selectIndex < cordinations.count {
-//            model = cordinations[selectIndex]
-//        }
-//        print("selectIndex: \(selectIndex)")
-//        selectIndex += 1
+        //        var model = LocationModel(latitude: "31.24179053588886", longitude: "121.60099938523173")
+        //        if selectIndex < cordinations.count {
+        //            model = cordinations[selectIndex]
+        //        }
+        //        print("selectIndex: \(selectIndex)")
+        //        selectIndex += 1
         
         let lp: [String: String] = ["latitude": model.latitude, "longitude": model.longitude, "success": "1"]
         
@@ -250,25 +270,16 @@ extension ViewController {
         default:
             break
         }
-        // "accessToken": token
-        
-//        let s = dicToJsonString(fp)
-//        guard let info = s else{
-//            RNNoticeAlert.showError("提示", body: "json串生成失败")
-//            return
-//        }
         
         var ss: [String: Any] =  ["scheduleInfo": sp, "gspInfoVO": lp]
-//        for item in lp {
-//            sp[item.key] = item.value
-//        }
         for item in fp{
             ss[item.key] = item.value
         }
         
         signoutParams = ["checkout": dicToJsonString(ss)!]  // "accessToken": token,
-        
     }
+    
+    
     
     func shouMsg(leftString: String, rightString: String, contentString: String) {
         
