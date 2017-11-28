@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B95EC513C6EE24548FF2A460 /* Pods_SignInOutOfOzner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49049F67ABE4A653D0CEBF5 /* Pods_SignInOutOfOzner.framework */; };
+		E018E85B1FCCF8F800D43F05 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E018E85A1FCCF8F800D43F05 /* LoginViewController.swift */; };
 		E02ED47C1FC3F3AE00F7F7C8 /* RNHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02ED47B1FC3F3AE00F7F7C8 /* RNHud.swift */; };
 		E02ED47E1FC3F3B800F7F7C8 /* RNNoticeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02ED47D1FC3F3B800F7F7C8 /* RNNoticeAlert.swift */; };
 		E02ED4801FC3F4E000F7F7C8 /* RNConstDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02ED47F1FC3F4E000F7F7C8 /* RNConstDefine.swift */; };
@@ -33,6 +34,7 @@
 		37EC363867ED5B488AC0D181 /* Pods-SignInOutOfOzner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignInOutOfOzner.release.xcconfig"; path = "Pods/Target Support Files/Pods-SignInOutOfOzner/Pods-SignInOutOfOzner.release.xcconfig"; sourceTree = "<group>"; };
 		C49049F67ABE4A653D0CEBF5 /* Pods_SignInOutOfOzner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SignInOutOfOzner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEAD5D1ECB5EB79C177ED0F8 /* Pods-SignInOutOfOzner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignInOutOfOzner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SignInOutOfOzner/Pods-SignInOutOfOzner.debug.xcconfig"; sourceTree = "<group>"; };
+		E018E85A1FCCF8F800D43F05 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E02ED47B1FC3F3AE00F7F7C8 /* RNHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNHud.swift; sourceTree = "<group>"; };
 		E02ED47D1FC3F3B800F7F7C8 /* RNNoticeAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNNoticeAlert.swift; sourceTree = "<group>"; };
 		E02ED47F1FC3F4E000F7F7C8 /* RNConstDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNConstDefine.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				E06543E21FC3CFA10050B283 /* AppDelegate.swift */,
 				E06543E41FC3CFA10050B283 /* ViewController.swift */,
 				E0A6786C1FC526E500578E9E /* SelectionController.swift */,
+				E018E85A1FCCF8F800D43F05 /* LoginViewController.swift */,
 				E06543E61FC3CFA10050B283 /* Main.storyboard */,
 				E06543E91FC3CFA10050B283 /* Assets.xcassets */,
 				E06543EB1FC3CFA10050B283 /* LaunchScreen.storyboard */,
@@ -318,6 +321,7 @@
 				E02ED4851FC4057000F7F7C8 /* ShowModel.swift in Sources */,
 				E06543FA1FC3EF4F0050B283 /* UserServicer.swift in Sources */,
 				E02ED47C1FC3F3AE00F7F7C8 /* RNHud.swift in Sources */,
+				E018E85B1FCCF8F800D43F05 /* LoginViewController.swift in Sources */,
 				E0A6786F1FC54E2C00578E9E /* RNLocationManager.swift in Sources */,
 				E06544001FC3EFD00050B283 /* RNNetworkManager.swift in Sources */,
 				E06543E31FC3CFA10050B283 /* AppDelegate.swift in Sources */,

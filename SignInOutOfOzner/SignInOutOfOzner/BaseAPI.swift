@@ -16,7 +16,9 @@ import Foundation
 let BASEURL = "http://www.winployee.com" // 使用
 
 // MARK: Key
-
+let UserToken = "USERTOKEN"
+let UserName = "USERNAME"
+let Password = "PASSWORD"
 
 
 //MARK: - error code

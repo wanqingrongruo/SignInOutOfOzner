@@ -19,21 +19,14 @@ class ViewController: UIViewController {
     
     @IBAction func clickAction(_ sender: UIButton) {
         switch sender.tag {
-        case 100:
-            // 登陆
-            login()
-            break
-        case 200:
-            // 进入签到界面
-            showInfo()
-            break
         case 300:
-            // 签到
-            signIn()
+            self.clickIndex = 300
+            self.showInfo()
             break
         case 400:
             // 签退
-            signOut()
+             self.clickIndex = 400
+            self.showInfo()
             break
         default:
             break
@@ -65,12 +58,9 @@ class ViewController: UIViewController {
         
         return array
     }()
-    // 登陆参数 -  当前默认 : zwx --->  不同的人 "loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4" 两个字段不同
-    var loginParam: [String: Any] = ["loginUserName": "6YOR5paH56Wl", "password": "MzI4OTI4", "udid": "A7D5EDBE-5529-1803-4DCC-45360B5F0688-1507863771-394855", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1114a8979291e13fadf", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
+   
     var showString: String = ""
-    lazy var loginModel: LoginModel = {
-        return LoginModel()
-    }()
+   
     lazy var showModel: ShowModel = {
         return ShowModel()
     }()
@@ -81,14 +71,23 @@ class ViewController: UIViewController {
         return [String: Any]()
     }()
     
+    private var clickIndex = 0 // 签到/ 签退
+    var selectIndex = 0 //  用于坐标随机
     
-    var selectIndex = 0
+    lazy var queue: OperationQueue = {
+        return OperationQueue()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.title = "zwx"
+        if let name = UserDefaults.standard.object(forKey: UserName) as? String {
+            self.title = name
+        }else{
+           self.title = "who are you?"
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,45 +111,36 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let _ = segue.destination as! SelectionController
+        let loginViewController = segue.destination as! LoginViewController
         
-        if segue.identifier == "Selection" {
-            
-            // 不写了
+        if segue.identifier == "Login" {
+            loginViewController.callback = { _ in
+                DispatchQueue.main.async {
+                    
+                    if let name = UserDefaults.standard.object(forKey: UserName) as? String {
+                         self.title = name
+                    }else{
+                         self.title = "***"
+                    }
+                   
+                }
+            }
         }
     }
 
 }
 
 extension ViewController {
-    func login() {
-        RNHud().showHud(nil)
-        
-        UserServicer.qdLogin(loginParam, successClourue: { (result) in
-            RNHud().hiddenHub()
-            self.loginModel = result
-            
-            DispatchQueue.main.async {
-                self.showString = "token: \(result.token!)\nserver: \(result.server!)"
-                self.textView.text = self.showString
-            }
-            RNNoticeAlert.showSuccess("提示", body: "登陆成功", duration: 0.2)
-        }) { (msg, code) in
-            RNHud().hiddenHub()
-            RNNoticeAlert.showError("提示", body: msg)
-        }
-    }
     
     func showInfo() {
         
-        guard let token = loginModel.token else {
-            RNNoticeAlert.showError("提示", body: "token为空")
+        guard let token = UserDefaults.standard.object(forKey: UserToken) as? String else {
+            RNNoticeAlert.showError("提示", body: "token为空, 请先登陆")
             return
         }
-        let param = ["accessToken": token] as [String : Any]
         RNHud().showHud(nil)
+        let param = ["accessToken": token] as [String : Any]
         UserServicer.getShowInfo(param, successClourue: { (result) in
-            RNHud().hiddenHub()
             self.showModel = result
             DispatchQueue.main.async {
                 self.showString += "\n=================================\n"
@@ -158,6 +148,16 @@ extension ViewController {
                 self.textView.text = self.showString
             }
              RNNoticeAlert.showSuccess("提示", body: "获取信息成功", duration: 0.2)
+            
+            switch self.clickIndex {
+            case 300:
+                self.signIn()
+            case 400:
+                self.signOut()
+            default:
+                break
+            }
+            
         }) { (msg, code) in
             RNHud().hiddenHub()
             RNNoticeAlert.showError("提示", body: msg)
@@ -165,12 +165,12 @@ extension ViewController {
     }
     
     func signIn() {
-        guard let token = loginModel.token else {
-            RNNoticeAlert.showError("提示", body: "token为空")
+        guard let token = UserDefaults.standard.object(forKey: UserToken) as? String else {
+            RNNoticeAlert.showError("提示", body: "token为空, 请先登陆")
+             RNHud().hiddenHub()
             return
         }
         mergeParams(tag: 0)
-        RNHud().showHud(nil)
         UserServicer.signOut(signoutParams, token: token, successClourue: { (result) in
             RNHud().hiddenHub()
             self.timeModel = result
@@ -190,12 +190,12 @@ extension ViewController {
     }
     
     func signOut() {
-        guard let token = loginModel.token else {
+        guard let token = UserDefaults.standard.object(forKey: UserToken) as? String else {
             RNNoticeAlert.showError("提示", body: "token为空")
+            RNHud().hiddenHub()
             return
         }
         mergeParams(tag: 1)
-        RNHud().showHud(nil)
         UserServicer.signOut(signoutParams, token: token, successClourue: { (result) in
             RNHud().hiddenHub()
             self.timeModel = result

@@ -391,8 +391,8 @@ extension RNNetworkManager {
             
             var urlRequest: URLRequest = URLRequest(url: myUrl, timeoutInterval: 60)
             
-            let jsonStr = parameters!["checkout"] as! String
-            let postData = jsonStr.data(using: String.Encoding.utf8)!
+            let jsonStr = parameters?["checkout"] as? String
+            let postData = jsonStr?.data(using: String.Encoding.utf8)!
             
             urlRequest.httpBody = postData
             urlRequest.httpMethod = HTTPMethod.post.rawValue
