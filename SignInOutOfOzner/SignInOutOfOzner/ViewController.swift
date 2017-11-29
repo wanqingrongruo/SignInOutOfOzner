@@ -22,11 +22,13 @@ class ViewController: UIViewController {
         case 300:
             self.clickIndex = 300
             self.showInfo()
+           // doWorkFor(index: clickIndex)
             break
         case 400:
             // 签退
             self.clickIndex = 400
             self.showInfo()
+           // doWorkFor(index: clickIndex)
             break
         default:
             break
@@ -77,6 +79,7 @@ class ViewController: UIViewController {
     lazy var queue: OperationQueue = {
         return OperationQueue()
     }()
+   // let queue = DispatchQueue(label: "com.zhengwenxiang.ehr", qos: DispatchQoS.default, attributes: DispatchQueue.Attributes.concurrent)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +129,42 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func doWorkFor(index: Int) {
+        
+        let op = BlockOperation {
+           self.showInfo()
+        }
+        
+        op.completionBlock = {
+            
+            if index == 300 {
+                self.signIn()
+            }else if index == 400 {
+                self.signOut()
+            }
+        }
+        
+        // 放在最后
+        queue.addOperation(op)
+        
+//        let getInfo = DispatchWorkItem {
+//            self.showInfo()
+//        }
+       // queue.async(execute: getInfo)
+//        let action = DispatchWorkItem(qos: .default, flags: .barrier) {
+//           self.showInfo()
+//        }
+//        queue.async(execute: action)
+//        let sign = DispatchWorkItem {
+//            if index == 300 {
+//                self.signIn()
+//            }else if index == 400 {
+//                self.signOut()
+//            }
+//        }
+//        queue.async(execute: sign)
     }
     
 }
