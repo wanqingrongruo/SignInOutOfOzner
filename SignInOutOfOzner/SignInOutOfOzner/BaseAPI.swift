@@ -29,6 +29,8 @@ let successCode = 0 // 大于0是算请求成功
 
 //MARK: - 用户相关
 let AppLogin = "http://www.winployee.com/cw-ms/user/login.json" // 登陆
-let ShowInfo = "https://cpnd6.winployee.com/api/att/coGetInfo.json" // 签到界面
-let SignIn = "https://cpnd6.winployee.com/api/att/clockout.json" // 签到
-let SignOut = "https://cpnd6.winployee.com/api/att/clockout.json" // 签退
+//let ShowInfo = "https://cpnd6.winployee.com/api/att/coGetInfo.json" // 签到界面
+var signUrl = "https://cpnd-hz.winployee.com"
+var ShowInfo = "\(signUrl)/api/att/coGetInfo.json" // 签到界面
+var SignIn = "\(signUrl)/api/att/clockout.json" // 签到
+var SignOut = "\(signUrl)/api/att/clockout.json" // 签退
