@@ -22,7 +22,7 @@ let Password = "PASSWORD"
 
 
 //MARK: - error code
-let successCode = 0 // 大于0是算请求成功
+let successCode = 0 
 
 
 // 接口 path

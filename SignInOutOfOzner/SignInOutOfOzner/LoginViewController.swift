@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         let passwordData = password.data(using: String.Encoding.utf8)
         let bPsd = passwordData!.base64EncodedString()
         
-        let loginParam: [String: Any] = ["loginUserName": bUser, "password": bPsd, "udid": "A7D5EDBE-5529-1803-4DCC-45360B5F0688-1507863771-394855", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1114a8979291e13fadf", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
+        let loginParam: [String: Any] = ["loginUserName": bUser, "password": bPsd, "udid": UIDevice.current.identifierForVendor?.uuidString ?? "A7D5EDBE-5529-1803-4DCC-45360B5F0688-1507863771-394856", "companyName": "5rWp5rO96ZuG5Zui", "registrationId":"1114a8979291e13fadd", "deviceInfo": ["platform": "ios", "version":"11.1.2", "manufactor":"apple"]] as [String : Any]
         
         self.login(login: loginParam)
     }
