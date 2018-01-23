@@ -249,7 +249,7 @@ extension ViewController {
                 self.showString += "date: \(result.date!)\ntime: \(result.time!)"
                 self.textView.text = self.showString
             }
-            self.shouMsg(leftString: "好的", rightString: "腿被打断了", contentString: "下班了还不快跑 - \(result.date ?? "") \(result.time ?? "")")
+            self.shouMsg(leftString: "赶着回家报效祖国", rightString: "身残志坚我要工作", contentString: " 别回眸,末班车就要开了\n\(result.date ?? "") \(result.time ?? "")")
         }) { (msg, code) in
             RNHud().hiddenHub()
             RNNoticeAlert.showError("提示", body: msg)
@@ -322,7 +322,7 @@ extension ViewController {
     
     func shouMsg(leftString: String, rightString: String, contentString: String) {
         
-        let alert = UIAlertController(title: "浩泽沙币", message: contentString, preferredStyle: .alert)
+        let alert = UIAlertController(title: "我爱你中国", message: contentString, preferredStyle: .alert)
         let deletaButton = UIAlertAction(title: leftString, style: .default, handler: nil)
         let cancelButton = UIAlertAction(title: rightString, style: .destructive,  handler: nil)
         alert.addAction(cancelButton)
